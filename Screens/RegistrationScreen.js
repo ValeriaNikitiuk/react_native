@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   TextInput,
-  View,
-  Text,
   TouchableOpacity,
   KeyboardAvoidingView,
   Keyboard,
+  View,
+  Text,
+  
 } from "react-native";
 import initialState from "./initialState";
 
@@ -40,7 +41,7 @@ const RegistrationScreen = () => {
   };
 
   return (
-    <View style={styles.conteinerForm}>
+    <View style={styles.containerForm}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
@@ -97,24 +98,25 @@ const RegistrationScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  conteinerForm: {
-    backgroundColor: "#fff",
+  containerForm: {
+   
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
+     backgroundColor: "#fff",
   },
   form: {
     display: "flex",
     marginHorizontal: 16,
   },
   input: {
-    borderWidth: 1,
     height: 50,
-    borderColor: "#E8E8E8",
+    borderWidth: 1,
     backgroundColor: "#F6F6F6",
     color: "#212121",
-    borderRadius: 8,
     padding: 16,
-    marginBottom: 16
+    marginBottom: 16,
+    borderColor: "#E8E8E8",
+     borderRadius: 8
   },
   textReg: {
     color: "#212121",
@@ -130,11 +132,11 @@ const styles = StyleSheet.create({
     marginBottom: 78,
   },
   btnReg: {
-    backgroundColor: "#FF6C00",
+      backgroundColor: "#FF6C00",
     padding: 16,
     borderRadius: 100,
     alignItems: "center",
-    marginTop: 27,
+     marginTop: 27,
     marginBottom: 16
   },
   textBtn: {
@@ -143,9 +145,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   textLog: {
-    color: "#1B4371",
-    textAlign: "center",
+     textAlign: "center",
     fontWeight: "400",
+    color: "#1B4371",
     fontSize: 16,
   },
 });

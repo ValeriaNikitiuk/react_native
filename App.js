@@ -51,15 +51,16 @@ function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    fontFamily: "Roboto-Regular",
-  },
+ 
   image: {
     flex: 1,
     resizeMode: "cover",
     justifyContent: "flex-end",
+  },
+   container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    fontFamily: "Roboto-Regular",
   },
 });
 

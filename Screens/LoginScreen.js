@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
-  TextInput,
-  View,
   Text,
+ TextInput,
+  View,
   TouchableOpacity,
   KeyboardAvoidingView,
   Keyboard,
@@ -45,12 +45,12 @@ const LoginScreen = () => {
   };
 
   return (
-    <View style={styles.conteinerForm}>
+    <View style={styles.containerForm}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <View style={{ ...styles.form, marginBottom: isShowKeyboard ? 32 : 0 }}>
-          <Text style={styles.textReg}>Войти</Text>
+          <Text style={styles.text}>Войти</Text>
           <TextInput
             style={[styles.input, isFocused && { borderColor: "#FF6C00" }]}
             placeholder="Адрес электронной почты"
@@ -94,10 +94,11 @@ const LoginScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  conteinerForm: {
-    backgroundColor: "#fff",
-    borderTopLeftRadius: 25,
+  containerForm: {
+     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
+    backgroundColor: "#fff",
+   
   },
   form: {
     display: "flex",
@@ -106,14 +107,15 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     height: 50,
-    borderColor: "#E8E8E8",
-    backgroundColor: "#F6F6F6",
+     backgroundColor: "#F6F6F6",
     color: "#212121",
     borderRadius: 8,
+    borderColor: "#E8E8E8",
+   
     padding: 16,
     marginBottom: 16,
   },
-  textReg: {
+  text: {
     color: "#212121",
     fontSize: 30,
     textAlign: "center",
@@ -140,9 +142,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   textLog: {
-    color: "#1B4371",
-    textAlign: "center",
+       textAlign: "center",
     fontWeight: "400",
+    color: "#1B4371",
     fontSize: 16,
   },
 });
