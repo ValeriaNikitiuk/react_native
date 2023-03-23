@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "myNewProject",
+    "assetBundlePatterns": ["**/*"],
     "slug": "myNewProject",
     "version": "1.0.0",
     "orientation": "portrait",
