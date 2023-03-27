@@ -40,8 +40,8 @@ function App() {
           style={styles.image}
           source={require("./Screens/img/photo-1.jpg")}
         >
-          {/* <RegistrationScreen /> */}
-          <LoginScreen />
+          <RegistrationScreen />
+          {/* <LoginScreen /> */}
 
           <StatusBar style="auto" />
         </ImageBackground>
