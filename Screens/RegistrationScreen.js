@@ -2,17 +2,19 @@ import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   TextInput,
+  View,
+  Text,
   TouchableOpacity,
   KeyboardAvoidingView,
   Keyboard,
-  View,
-  Text,
-  
+  ImageBackground,
 } from "react-native";
 import initialState from "./initialState";
+import { useDispatch } from "react-redux";
+import { signUpUser } from "../redux/auth/authSlice";
 
-
-const RegistrationScreen = () => {
+const RegistrationScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
 
@@ -36,87 +38,103 @@ const RegistrationScreen = () => {
   }, []);
 
   const handleRegister = () => {
-    console.log(state);
+    dispatch(signUpUser(state));
     setState(initialState);
+    navigation.navigate("Home");
   };
 
   return (
-    <View style={styles.containerForm}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
-        <View style={{ ...styles.form, marginBottom: isShowKeyboard ? 32 : 0 }}>
-          <Text style={styles.textReg}>Регистрация</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Логин"
-            onFocus={() => setIsShowKeyboard(true)}
-            onChangeText={(value) =>
-              setState((prevState) => ({ ...prevState, login: value }))
-            }
-            value={state.login}
-            placeholderTextColor={"#BDBDBD"}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Адрес электронной почты"
-            onFocus={() => setIsShowKeyboard(true)}
-            onChangeText={(value) =>
-              setState((prevState) => ({ ...prevState, email: value }))
-            }
-            value={state.email}
-            placeholderTextColor={"#BDBDBD"}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Пароль"
-            secureTextEntry={true}
-            onFocus={() => setIsShowKeyboard(true)}
-            onChangeText={(value) =>
-              setState((prevState) => ({ ...prevState, password: value }))
-            }
-            value={state.password}
-            placeholderTextColor={"#BDBDBD"}
-          />
-        </View>
-      </KeyboardAvoidingView>
-
-      {!isShowKeyboard && (
-        <View style={styles.registerCont}>
-          <TouchableOpacity
-            style={styles.btnReg}
-            activeOpacity={0.8}
-            onPress={handleRegister}
+    <ImageBackground
+      style={styles.image}
+      source={require("./img/photo-bg.jpg")}
+    >
+      <View style={styles.conteinerForm}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          <View
+            style={{ ...styles.form, marginBottom: isShowKeyboard ? 32 : 0 }}
           >
-            <Text style={styles.textBtn}>Зарегестрироваться</Text>
-          </TouchableOpacity>
-          <Text style={styles.textLog}>Уже есть аккаунт? Войти</Text>
-        </View>
-      )}
-    </View>
+            <Text style={styles.textReg}>Регистрация</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Логин"
+              onFocus={() => setIsShowKeyboard(true)}
+              onChangeText={(value) =>
+                setState((prevState) => ({ ...prevState, login: value }))
+              }
+              value={state.login}
+              placeholderTextColor={"#BDBDBD"}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Адрес электронной почты"
+              onFocus={() => setIsShowKeyboard(true)}
+              onChangeText={(value) =>
+                setState((prevState) => ({ ...prevState, email: value }))
+              }
+              value={state.email}
+              placeholderTextColor={"#BDBDBD"}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Пароль"
+              secureTextEntry={true}
+              onFocus={() => setIsShowKeyboard(true)}
+              onChangeText={(value) =>
+                setState((prevState) => ({ ...prevState, password: value }))
+              }
+              value={state.password}
+              placeholderTextColor={"#BDBDBD"}
+            />
+          </View>
+        </KeyboardAvoidingView>
+
+        {!isShowKeyboard && (
+          <View style={styles.registerCont}>
+            <TouchableOpacity
+              style={styles.btnReg}
+              activeOpacity={0.8}
+              onPress={handleRegister}
+            >
+              <Text style={styles.textBtn}>Зарегестрироваться</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => navigation.navigate("Login")}
+            >
+              <Text style={styles.textLog}>Уже есть аккаунт? Войти</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  containerForm: {
-   
+  conteinerForm: {
+    backgroundColor: "#fff",
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
-     backgroundColor: "#fff",
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "flex-end",
   },
   form: {
-    display: "flex",
     marginHorizontal: 16,
   },
   input: {
-    height: 50,
     borderWidth: 1,
+    height: 50,
+    borderColor: "#E8E8E8",
     backgroundColor: "#F6F6F6",
     color: "#212121",
+    borderRadius: 8,
     padding: 16,
     marginBottom: 16,
-    borderColor: "#E8E8E8",
-     borderRadius: 8
   },
   textReg: {
     color: "#212121",
@@ -124,20 +142,19 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "500",
     marginTop: 32,
-    marginBottom: 32
+    marginBottom: 32,
   },
   registerCont: {
     marginHorizontal: 16,
-    display: "flex",
     marginBottom: 78,
   },
   btnReg: {
-      backgroundColor: "#FF6C00",
+    backgroundColor: "#FF6C00",
     padding: 16,
     borderRadius: 100,
     alignItems: "center",
-     marginTop: 27,
-    marginBottom: 16
+    marginTop: 27,
+    marginBottom: 16,
   },
   textBtn: {
     color: "#fff",
@@ -145,9 +162,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   textLog: {
-     textAlign: "center",
-    fontWeight: "400",
     color: "#1B4371",
+    textAlign: "center",
+    fontWeight: "400",
     fontSize: 16,
   },
 });
